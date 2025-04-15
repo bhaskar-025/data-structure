@@ -4,6 +4,7 @@ struct node{
 	 int data;
 	 struct node *left,*right; 
 };
+struct node*root=NULL;
  struct node* create(){
  	int x;
 	struct node *nnode;
@@ -46,18 +47,28 @@ int inorder(struct node *root){
 	 inorder(root->right);
      
   }
-       
+    int height(struct node*root){
+    	if(root==NULL){
+    		return -1;
+		}
+		int l=height(root->left);
+		int r=height(root->right);
+		return (l>r ? l:r)+1;
+		
+	}   
       
 
 
 int main(){
-	struct node*root=NULL;
+	
+	printf("enter root node");
 	root=create();
-	printf("your preorder tree is\n");
+	printf("\nyour preorder tree is\n");
 	preorder(root);
-	printf("your postorder tree is\n");
+	printf("\nyour postorder tree is\n");
 	  postorder(root);
-	  printf("your inorder tree is\n");
+	  printf("\nyour inorder tree is\n");
 	  inorder(root);
+	  printf("\nheight of tree is :%d",height(root));
 	  
 }
